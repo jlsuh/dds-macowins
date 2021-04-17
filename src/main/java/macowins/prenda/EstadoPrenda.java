@@ -2,6 +2,6 @@ package macowins.prenda;
 
 public interface EstadoPrenda {
 
-  double precioModificado(Prenda unaPrenda);
+  double precioModificado(int precioBase); /* protected */
 
 }

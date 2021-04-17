@@ -1,24 +1,31 @@
 package macowins.venta;
 
+import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
 
-public class Venta {
+public abstract class Venta {
 
   private List<RegistroVenta> registrosVentas = new LinkedList<>();
+  private LocalDate fecha;
+
+  public Venta(LocalDate fecha) {
+    this.fecha = fecha;
+  }
+
+  public abstract double montoConRecargo(double precioBase);
 
   public void addRegistroVenta(RegistroVenta unRegistroVenta) {
     registrosVentas.add(unRegistroVenta);
   }
 
   public double montoTotal() {
-    return registrosVentas.stream()
-        .mapToDouble(registroVenta -> registroVenta.montoRegistro())
-        .sum();
+    return this.montoConRecargo( // Template method
+        registrosVentas.stream().mapToDouble(rv -> rv.montoRegistro()).sum());
   }
 
-  public List<RegistroVenta> getRegistrosVentas() {
-    return this.registrosVentas;
+  public LocalDate getFecha() {
+    return this.fecha;
   }
 
 }

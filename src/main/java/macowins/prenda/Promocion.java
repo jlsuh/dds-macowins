@@ -9,8 +9,8 @@ public class Promocion implements EstadoPrenda {
   }
 
   @Override
-  public double precioModificado(Prenda unaPrenda) {
-    return unaPrenda.getPrecioBase() - valorFijo;
+  public double precioModificado(int precioBase) {
+    return precioBase - valorFijo;
   }
 
 }
