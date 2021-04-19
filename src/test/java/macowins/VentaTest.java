@@ -17,11 +17,13 @@ public class VentaTest {
 
   LocalDate diaActual = LocalDate.now();
   LocalDate diaPandemia = LocalDate.of(2020, Month.MARCH, 11);
+  Nueva nueva = new Nueva();
+  Liquidacion liquidacion = new Liquidacion();
 
   @Test
   public void gananciaConSoloUnaVentaEnEfectivoAlDiaActualEsCorrecto() {
     RegistroVenta rv1 = new RegistroVenta(new Prenda(100, new Promocion(10), Tipo.SACO), 100);
-    RegistroVenta rv2 = new RegistroVenta(new Prenda(100, new Liquidacion(), Tipo.PANTALON), 100);
+    RegistroVenta rv2 = new RegistroVenta(new Prenda(100, liquidacion, Tipo.PANTALON), 100);
     VentaEfectivo unaVenta = new VentaEfectivo(diaActual);
     Sucursal macowins = new Sucursal();
     unaVenta.addRegistroVenta(rv1);
@@ -32,8 +34,8 @@ public class VentaTest {
 
   @Test
   public void montoDeVentaConSoloUnaVentaDeTarjetaCreditoAlDiaActualEsCorrecto() {
-    RegistroVenta rv1 = new RegistroVenta(new Prenda(100, new Nueva(), Tipo.CAMISA), 100);
-    RegistroVenta rv2 = new RegistroVenta(new Prenda(100, new Nueva(), Tipo.SACO), 100);
+    RegistroVenta rv1 = new RegistroVenta(new Prenda(100, nueva, Tipo.CAMISA), 100);
+    RegistroVenta rv2 = new RegistroVenta(new Prenda(100, nueva, Tipo.SACO), 100);
     VentaTarjeta ventaTarjeta = new VentaTarjeta(3, 2, diaActual);
     Sucursal macowins = new Sucursal();
     ventaTarjeta.addRegistroVenta(rv1);
@@ -47,13 +49,13 @@ public class VentaTest {
     LocalDate diaPandemia = LocalDate.of(2020, Month.MARCH, 11);
 
     RegistroVenta rv1 = new RegistroVenta(new Prenda(100, new Promocion(10), Tipo.SACO), 100);
-    RegistroVenta rv2 = new RegistroVenta(new Prenda(100, new Liquidacion(), Tipo.PANTALON), 100);
+    RegistroVenta rv2 = new RegistroVenta(new Prenda(100, liquidacion, Tipo.PANTALON), 100);
     VentaEfectivo v1 = new VentaEfectivo(diaPandemia);
     v1.addRegistroVenta(rv1);
     v1.addRegistroVenta(rv2);
 
-    RegistroVenta rv3 = new RegistroVenta(new Prenda(100, new Liquidacion(), Tipo.CAMISA), 100);
-    RegistroVenta rv4 = new RegistroVenta(new Prenda(100, new Nueva(), Tipo.SACO), 100);
+    RegistroVenta rv3 = new RegistroVenta(new Prenda(100, liquidacion, Tipo.CAMISA), 100);
+    RegistroVenta rv4 = new RegistroVenta(new Prenda(100, nueva, Tipo.SACO), 100);
     VentaTarjeta v2 = new VentaTarjeta(3, 2, diaPandemia);
     v2.addRegistroVenta(rv3);
     v2.addRegistroVenta(rv4);
@@ -66,20 +68,20 @@ public class VentaTest {
 
   @Test
   public void macowinsSoloTieneEnCuentaLasVentasEnElDiaQueComenzoLaPandemia() {
-    RegistroVenta rv1 = new RegistroVenta(new Prenda(100, new Nueva(), Tipo.SACO), 100);
-    RegistroVenta rv2 = new RegistroVenta(new Prenda(50, new Liquidacion(), Tipo.PANTALON), 100);
+    RegistroVenta rv1 = new RegistroVenta(new Prenda(100, nueva, Tipo.SACO), 100);
+    RegistroVenta rv2 = new RegistroVenta(new Prenda(50, liquidacion, Tipo.PANTALON), 100);
     VentaEfectivo v1 = new VentaEfectivo(diaPandemia);
     v1.addRegistroVenta(rv1);
     v1.addRegistroVenta(rv2);
 
     RegistroVenta rv3 = new RegistroVenta(new Prenda(55, new Promocion(10), Tipo.SACO), 100);
-    RegistroVenta rv4 = new RegistroVenta(new Prenda(75, new Liquidacion(), Tipo.PANTALON), 100);
+    RegistroVenta rv4 = new RegistroVenta(new Prenda(75, liquidacion, Tipo.PANTALON), 100);
     VentaTarjeta v2 = new VentaTarjeta(5, 5, diaPandemia);
     v2.addRegistroVenta(rv3);
     v2.addRegistroVenta(rv4);
 
-    RegistroVenta rv5 = new RegistroVenta(new Prenda(100, new Nueva(), Tipo.SACO), 100);
-    RegistroVenta rv6 = new RegistroVenta(new Prenda(100, new Nueva(), Tipo.PANTALON), 100);
+    RegistroVenta rv5 = new RegistroVenta(new Prenda(100, nueva, Tipo.SACO), 100);
+    RegistroVenta rv6 = new RegistroVenta(new Prenda(100, nueva, Tipo.PANTALON), 100);
     VentaTarjeta v3 = new VentaTarjeta(3, 2, diaActual);
     v3.addRegistroVenta(rv5);
     v3.addRegistroVenta(rv6);
